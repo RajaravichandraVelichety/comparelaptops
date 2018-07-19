@@ -1,0 +1,52 @@
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  
+
+
+          <a class="btn btn-primary"  (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">filter</a>
+        
+      <hr>
+      <div  id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header display" >
+        <div class="panel-body"></div>
+      </div>
+
+
+
+  <div>
+    <div *ngFor="let item of brandproducts">
+      <div class="col-md-3">
+        <a routerLink="{{item.name}}" routerLinkActive="active">
+        <figure class="card card-product">
+          <div class="img-wrap"><img src="http://localhost:3000/uploads/{{item.image}}"></div>
+          <figcaption class="info-wrap">
+              <h4 class="title">{{item.name}}</h4>
+              
+              <div class="rating-wrap">
+                <div class="label-rating">132 reviews</div>
+                <div class="label-rating">154 orders </div>
+              </div> 
+          </figcaption>
+          <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>	
+            <div class="price-wrap h5">
+              <span class="price-new">{{item.price}}</span> <del class="price-old">$1980</del>
+            </div>
+          </div> 
+        </figure>
+        </a>
+      </div>
+  </div>
+</div>
+<div>
+<div >
+  <div class="col-xs-12 col-12">
+    <pagination [totalItems]="totalItems"></pagination>
+  </div>
+</div>
+</div>
+

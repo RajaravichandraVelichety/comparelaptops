@@ -1,0 +1,98 @@
+
+<div class="container">
+
+<div>
+    <carousel>
+     <slide>
+        <img src="assets/laptopforeveryneed.jpg" class="img-carousel" alt="third slide" style="display: block; width: 100%;">
+      </slide>
+      <slide>
+        <img src="assets/pcaccesories.jpg" class="img-carousel" alt="third slide" style="display: block; width: 100%;">
+      </slide>
+      <slide>
+        <img src="assets/dealoftheweek.jpg" class="img-carousel" alt="first slide" style="display: block; width: 100%;">
+      </slide>
+    </carousel>
+</div>
+<div><h1>Featured Partners</h1></div>
+<div>
+<mat-grid-list cols="6" rowHeight="80px">
+  <mat-grid-tile >
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/flipkart.png">
+  </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+ 
+ <mat-grid-tile>
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/amazon.png">
+  </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+
+<mat-grid-tile>
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/shopclues.png">
+  </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+
+<mat-grid-tile >
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/snapdeal.png">
+  </mat-card-content>
+  </mat-card>
+</mat-grid-tile>
+  
+  <mat-grid-tile >
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/jabong.png">
+  </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+
+
+<mat-grid-tile >
+  <mat-card class="partners">
+  <mat-card-content>
+  <img mat-card-image src="../assets/ebay.png">
+  </mat-card-content>
+  </mat-card>
+    </mat-grid-tile>
+  
+ </mat-grid-list> 
+</div>
+
+<div><h1>best selling laptops</h1></div>
+
+ <mat-grid-list cols="5">
+  <mat-grid-tile *ngFor="let item of products">
+  <mat-card routerLink="/ProductsDisplayInfo/{{item._id}}" routerLinkActive="active">
+  <mat-card-header>
+  <img mat-card-image src="http://localhost:3000/uploads/{{item.image}}">
+  </mat-card-header>
+  
+  <mat-card-content>
+    <h2>{{item.name}}</h2>
+    <h2>{{item.price}}</h2>
+  </mat-card-content>
+  </mat-card>
+    
+  </mat-grid-tile>
+ </mat-grid-list> 
+
+</div>
+<div><h1>Brands that you love</h1></div>
+
+
+
+
+
+
+
