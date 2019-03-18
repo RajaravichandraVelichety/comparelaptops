@@ -23,6 +23,7 @@ export class AddProductComponent implements OnInit {
   pItemFLIP:string;
   pItemImage:File;
   pItemDescription:string;
+  pItemCategory:string;
 
   
   
@@ -54,11 +55,10 @@ export class AddProductComponent implements OnInit {
 
   intoitem(){
     const product = new FormData();
+    product.append('category',this.pItemCategory);
    product.append('brand',this.pItemBrand);
      product.append('name',this.pItemName);
      product.append('price',this.pItemPrice);
-     product.append('asin',this.pItemASIN);
-     product.append('flip',this.pItemFLIP);
      product.append('image',this.files[0], this.files[0]['name']);
      product.append('description',this.pItemDescription);
    this.DataService.insertItem(product).then(response=>{this.products.push(response);});     

@@ -19,6 +19,8 @@ export class ProductsDisplayInfoComponent implements OnInit {
   productBrand;
   product;
   brandnamer;
+  
+  products =[];  
   constructor(private DataService: DataService,private router: Router,route:ActivatedRoute) { 
     this.DataService.currentMessage.subscribe(brandnamer => this.brandnamer = brandnamer);
     
@@ -55,6 +57,11 @@ export class ProductsDisplayInfoComponent implements OnInit {
    var productbrand:string= brand;
     
    this.DataService.getProduct(productname,productbrand).then(product => this.product= product);
+  }
+
+  addToCart(product):void{
+    console.log(product);
+    this.DataService.addToCart(product).then(response=>{this.products.push(response);});  
   }
 
 }

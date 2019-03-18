@@ -64,6 +64,15 @@ insertItem(item :FormData):Promise<any[]>{
                 .catch(this.handleError)
 }
 
+addToCart(item :FormData):Promise<any[]>{
+
+        
+  return this.http.post('http://localhost:3000/addToCart/',item)
+         .toPromise()
+         .then(response => response)
+         .catch(this.handleError)
+}
+
 insertAmazonItem(item):Promise<any[]>{
 
         

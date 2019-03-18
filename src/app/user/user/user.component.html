@@ -1,28 +1,40 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div >
   <header [mdcTopAppBar]="type" [fixedAdjust]="fixedAdjust">
     <div mdcTopAppBarRow>
-      <section mdcTopAppBarSection alignStart>
-      
-        <button  mdcTopAppBarNavIcon class="material-icons" (click)="sidenav.toggle()">menu</button>
-        <h1 mdcTopAppBarTitle routerLink="/" routerLinkActive="active">CompareLaptop</h1>
+      <section mdcTopAppBarSection class="start">
+        <span  id="menu" class="glyphicon glyphicon-menu-hamburger btn btn-lg" (click)="sidenav.toggle()"></span>
+        <h3 mdcTopAppBarTitle id="name"  routerLink="/" routerLinkActive="active">RYR.COM</h3>
       </section>
-      <section mdcTopAppBarSection alignEnd >
-       
 
-       
-    
-            <form action="" class="search-form">
-                <div class="form-group has-feedback">
-            		<label for="search" class="sr-only">Search</label>
-            		<input type="text" class="form-control" [(ngModel)]="searchitem" name="searchitem" id="searchitem" placeholder=" Search by product">
-              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-            	</div>
-              
+      <section class="middle">
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary glyphicon glyphicon-search" type="button" 
+                ></button>
+              </div>
+            </div>
+      </section>
+      
+      <section mdcTopAppBarSection class="end" >
+            <form action="">
+                <span class="glyphicon glyphicon-shopping-cart btn btn-lg"></span>
             </form>
-        
-    
-        
+            
+            
+
+            <form action="">
+                <span class="glyphicon glyphicon-user btn btn-lg"></span>
+            </form>
+
+            <form action="">
+                <span class="glyphicon glyphicon-off btn btn-lg"></span>
+            </form>
+            
+
+                
+            
       </section>
     </div>
   </header>

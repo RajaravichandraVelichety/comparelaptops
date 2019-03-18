@@ -81,6 +81,7 @@ MongoClient.connect(url, function(err, db) {
   router.post('/insert',upload.single('image'),(req,res)=>{
   
   var myobj = { 
+                category:req.body.category,
                 brand:req.body.brand,
                 name:req.body.name,
                 price:req.body.price,
@@ -96,6 +97,28 @@ MongoClient.connect(url, function(err, db) {
     
     
   });
+
+  });
+
+  router.post('/addToCart',upload.single('image'),(req,res)=>{
+  
+    var myobj = { 
+                  category:req.body.category,
+                  brand:req.body.brand,
+                  name:req.body.name,
+                  price:req.body.price,
+                  asin:req.body.asin,
+                  flip:req.body.flip,
+                  image: req.file.filename,
+                  description:req.body.description,
+                };
+  
+      
+    dbo.collection(itemsInCart).insertOne(myobj, function(err, res) {
+      if (err) throw err;
+      
+      
+    });
 
   });
   

@@ -25,43 +25,44 @@ import { LoginComponent } from './login/login.component'
 import { AuthGuardGuard } from "src/app/admin/auth-guard.guard";
 import { AuthService } from "src/app/admin/auth.service";
 import { AdminComponent } from './admin/admin.component';
+import { AdminSigninComponent } from './admin-signin/admin-signin.component';
+import { AdminSignupComponent } from './admin-signup/admin-signup.component';
 
 
 export const adminRouter: Routes=[
   {
     path:'admin',
      component: AdminHomeComponent,
-      canActivate:[AuthGuardGuard],
+      
   
     children:[
       {
         path:'',
-        component: AdminComponent,
-        canActivate:[AuthGuardGuard]
+        component: AdminComponent
+        
         
       },
       {
         path:'addproduct',
-        component:AddProductComponent,
-        canActivate:[AuthGuardGuard]
+        component:AddProductComponent
+        
       },
       {
         path:'deleteproduct/:brand',
-        component:DeleteProductComponent,
-        canActivate:[AuthGuardGuard]
+        component:DeleteProductComponent
+        
 
       },
       {
         path:'amazonadd',
-        component:AddProductAmazonComponent,
-        canActivate:[AuthGuardGuard]
+        component:AddProductAmazonComponent
+        
         
 
       },
       {
         path:'flipkartadd',
-        component:AddProductFlipkartComponent,
-        canActivate:[AuthGuardGuard]
+        component:AddProductFlipkartComponent
         
 
       },
@@ -93,6 +94,6 @@ export const adminRouter: Routes=[
     AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent
   ],
   providers:[AuthService,AuthGuardGuard],
-  declarations: [AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent, AddProductAmazonComponent, AddProductFlipkartComponent, LoginComponent, AdminComponent]
+  declarations: [AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent, AddProductAmazonComponent, AddProductFlipkartComponent, LoginComponent, AdminComponent, AdminSigninComponent, AdminSignupComponent]
 })
 export class AdminModule { }

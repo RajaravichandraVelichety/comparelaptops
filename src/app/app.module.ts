@@ -27,11 +27,11 @@ const mainRouter: Routes=[
   
   {
     path: '',
-    loadChildren:'./user.module#UserModule'
+    loadChildren:'./user#UserModule'
   },
   {
     path: 'admin',
-    loadChildren:'./admin.module#AdminModule',
+    loadChildren:'./admin#AdminModule',
     
   }
 ];

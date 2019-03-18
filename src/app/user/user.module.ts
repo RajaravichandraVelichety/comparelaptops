@@ -21,7 +21,10 @@ import { CollapseModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
 import { ProgressbarModule } from 'ngx-bootstrap';
 import { UserComponent } from './user/user.component';
-import { SimilarProductsComponent } from './similar-products/similar-products.component'
+import { SimilarProductsComponent } from './similar-products/similar-products.component';
+import { PaymentComponent } from './payment/payment.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
+import { UserSigninComponent } from './user-signin/user-signin.component'
 
 export const  userRouter: Routes=[
   {
@@ -32,6 +35,18 @@ export const  userRouter: Routes=[
       {
         path:'',
         component:UserHomeComponent
+      },
+      {
+        path:'payment',
+        component:PaymentComponent
+      },
+      {
+        path:'signup',
+        component:UserSignupComponent
+      },
+      {
+        path:'login',
+        component:UserSigninComponent
       },
       
       {
@@ -48,7 +63,8 @@ export const  userRouter: Routes=[
             
           }
           ]
-      }
+      },
+      
     ]
   }
   ];
@@ -70,6 +86,6 @@ export const  userRouter: Routes=[
   ],
   exports:[
     UserHomeComponent, FooterComponent,  ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent],
-  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent]
+  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent]
 })
 export class UserModule { }
