@@ -59,9 +59,9 @@ export class ProductsDisplayInfoComponent implements OnInit {
    this.DataService.getProduct(productname,productbrand).then(product => this.product= product);
   }
 
-  addToCart(product):void{
-    console.log(product);
-    this.DataService.addToCart(product).then(response=>{this.products.push(response);});  
+  addToCart(productid):void{
+    console.log(productid);
+    this.DataService.addToCart(productid).then(response=>{this.products.push(response);});  
   }
 
 }

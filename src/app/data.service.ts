@@ -49,6 +49,13 @@ getCollections(): Promise<any[]>{
                 .catch(this.handleError)
 }
 
+getCategories(): Promise<any[]>{
+  return this.http.get('http://localhost:3000/categories/')
+              .toPromise()
+              .then(response=> response.json().data)
+              .catch(this.handleError)
+}
+
 sendData(name:string){
      this.messageSource.next(name);
 
@@ -64,26 +71,37 @@ insertItem(item :FormData):Promise<any[]>{
                 .catch(this.handleError)
 }
 
-addToCart(item :FormData):Promise<any[]>{
+signin(username:string,password:string):Promise<any[]>{
+  
+  return this.http.get('http://localhost:3000/signin/'+username+'/'+password)
+             .toPromise()
+             .then(response=> response.json().data)
+             .catch(this.handleError)
+}
+
+signup(user :FormData):Promise<any[]>{
 
         
-  return this.http.post('http://localhost:3000/addToCart/',item)
+  return this.http.post('http://localhost:3000/signup/',user)
          .toPromise()
          .then(response => response)
          .catch(this.handleError)
 }
 
-insertAmazonItem(item):Promise<any[]>{
+addToCart(item :string):Promise<any[]>{
 
         
-         return this.http.get('http://localhost:3000/addproduct/'+item)
-                .toPromise()
-                .then(response => response)
-                .catch(this.handleError)
+  return this.http.post('http://localhost:3000/addToCart/',+item)
+         .toPromise()
+         .then(response => response)
+         .catch(this.handleError)
 }
-deleteproduct(productid):Promise<any[]>{
+
+
+
+deleteproduct(productid:string,brand:string):Promise<any[]>{
   
-     return this.http.get('http://localhost:3000/deleteproduct/'+productid)
+     return this.http.get('http://localhost:3000/deleteproduct/'+productid+'/'+brand)
                 .toPromise()
                 .then(response=> response.json().data)
                 .catch(this.handleError)

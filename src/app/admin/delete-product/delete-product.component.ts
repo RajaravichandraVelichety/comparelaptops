@@ -17,6 +17,7 @@ export class DeleteProductComponent implements OnInit {
   brandproducts= [];
   brandname: string;
   message:string;
+  response:string;
 
   constructor(private DataService: DataService,private router: Router,route:ActivatedRoute) { 
 
@@ -46,10 +47,13 @@ export class DeleteProductComponent implements OnInit {
    this.DataService.getbrandProducts(brander).then(brandproducts => this.brandproducts= brandproducts);
   }
 
-  deleteproduct(name){
+  deleteproduct(name,brand){
     var productid=name;
-    console.log(productid);
-    this.DataService.deleteproduct(productid).then(response=>response);
+    var brand =brand;
+    console.log(productid,brand);
+    this.DataService.deleteproduct(productid,brand).then(response=>response=response);
+    console.log(this.response.toString());
+
   }
 
   

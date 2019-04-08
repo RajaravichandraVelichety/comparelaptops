@@ -19,7 +19,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
 import { ProgressbarModule } from 'ngx-bootstrap';
-import { AddProductAmazonComponent } from './add-product-amazon/add-product-amazon.component';
 import { AddProductFlipkartComponent } from './add-product-flipkart/add-product-flipkart.component';
 import { LoginComponent } from './login/login.component'
 import { AuthGuardGuard } from "src/app/admin/auth-guard.guard";
@@ -50,13 +49,6 @@ export const adminRouter: Routes=[
       {
         path:'deleteproduct/:brand',
         component:DeleteProductComponent
-        
-
-      },
-      {
-        path:'amazonadd',
-        component:AddProductAmazonComponent
-        
         
 
       },
@@ -94,6 +86,6 @@ export const adminRouter: Routes=[
     AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent
   ],
   providers:[AuthService,AuthGuardGuard],
-  declarations: [AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent, AddProductAmazonComponent, AddProductFlipkartComponent, LoginComponent, AdminComponent, AdminSigninComponent, AdminSignupComponent]
+  declarations: [AddProductComponent, DeleteProductComponent, AdminHomeComponent, AdminSidenavComponent,AddProductFlipkartComponent, LoginComponent, AdminComponent, AdminSigninComponent, AdminSignupComponent]
 })
 export class AdminModule { }

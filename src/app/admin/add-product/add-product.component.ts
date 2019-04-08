@@ -24,6 +24,7 @@ export class AddProductComponent implements OnInit {
   pItemImage:File;
   pItemDescription:string;
   pItemCategory:string;
+  pItemSubCategory:string;
 
   
   
@@ -56,13 +57,25 @@ export class AddProductComponent implements OnInit {
   intoitem(){
     const product = new FormData();
     product.append('category',this.pItemCategory);
+    product.append('subcategory',this.pItemSubCategory);
    product.append('brand',this.pItemBrand);
      product.append('name',this.pItemName);
      product.append('price',this.pItemPrice);
      product.append('image',this.files[0], this.files[0]['name']);
      product.append('description',this.pItemDescription);
-   this.DataService.insertItem(product).then(response=>{this.products.push(response);});     
+     
+   this.DataService.insertItem(product).then(response=>{this.products.push(response);}); 
+   
+   this.pItemCategory="";
+   this.pItemSubCategory="";
+   this.pItemBrand="";
+   this.pItemName="";
+   this.pItemPrice="";
+   this.pItemDescription="";
   }
+
+ 
+
 
 }
 

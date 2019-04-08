@@ -26,7 +26,7 @@ let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibm
 });
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  var  dbo = db.db("Laptops");
+  var  dbo = db.db("ShopperSite");
 
   
 
@@ -57,6 +57,19 @@ MongoClient.connect(url, function(err, db) {
      
 });
 
+
+router.get('/signin/:username/:password',(req,res)=>{
+  
+  var email={email:req.params.username};
+  console.log(email);
+  dbo.collection("Customers").find(email).toArray(function(err, users) {
+  if (err) throw err;
+  response.data = users;
+  console.log(response.data);
+  res.json(response);
+    });  
+});
+
   
   router.get('/brandproducts/:item',(req,res)=>{
   
@@ -78,18 +91,27 @@ MongoClient.connect(url, function(err, db) {
   }));
 });
 
+router.get('/categories',(req,res)=>{
+    
+  dbo.listCollections().toArray((function(err, brands) {
+    if (err) throw err;
+    response.data = brands;
+    res.json(response);
+  }));
+});
+
   router.post('/insert',upload.single('image'),(req,res)=>{
   
   var myobj = { 
                 category:req.body.category,
+                subcategory:req.body.subcategory,
                 brand:req.body.brand,
                 name:req.body.name,
                 price:req.body.price,
-                asin:req.body.asin,
-                flip:req.body.flip,
                 image: req.file.filename,
                 description:req.body.description,
               };
+              console.log(req.body.category);
 
     
   dbo.collection(myobj.brand).insertOne(myobj, function(err, res) {
@@ -97,6 +119,25 @@ MongoClient.connect(url, function(err, db) {
     
     
   });
+});
+
+  router.post('/signup',upload.single('image'),(req,res)=>{
+  
+    var customer = { 
+                  name:req.body.name,
+                  email:req.body.email,
+                  phone:req.body.phonenumber,
+                  password:req.body.password,
+                  image: req.file.filename,
+                };
+    console.log(req.body.phonenumber);
+  
+      
+    dbo.collection("Customers").insertOne(customer, function(err, res) {
+      if (err) throw err;
+      
+      
+    });
 
   });
 
@@ -148,10 +189,10 @@ router.get('/addproduct/:item',(req,res)=>{
 
 
 
-    router.get('/deleteproduct/:productid',(req,res)=>{
+    router.get('/deleteproduct/:productid/:brand',(req,res)=>{
 
     
-    dbo.collection("Dell").deleteOne({"name":req.params.productid}, function(err, obj) {
+    dbo.collection(req.params.brand).deleteOne({"name":req.params.productid}, function(err, obj) {
         if (err) throw err;
         
     response.message="1 document deleted";

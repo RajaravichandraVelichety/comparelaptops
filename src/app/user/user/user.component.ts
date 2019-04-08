@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "src/app/data.service";
+import {Router} from '@angular/router';
+
+
+
+
 
 @Component({
   selector: 'app-user',
@@ -8,9 +13,10 @@ import { DataService } from "src/app/data.service";
 })
 export class UserComponent implements OnInit {
 
-  constructor(private DataService: DataService) { }
+  constructor(private DataService: DataService,private router: Router) { }
 
     brands=[];
+    categories=[];
     searchitem:string;
 
   ngOnInit() {
@@ -26,5 +32,9 @@ export class UserComponent implements OnInit {
   searchProducts(){
     search=>this.searchitem;
   }
+
+  navigateToCart() {
+    this.router.navigateByUrl('/cart');
+ }
 
 }

@@ -24,7 +24,9 @@ import { UserComponent } from './user/user.component';
 import { SimilarProductsComponent } from './similar-products/similar-products.component';
 import { PaymentComponent } from './payment/payment.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
-import { UserSigninComponent } from './user-signin/user-signin.component'
+import { UserSigninComponent } from './user-signin/user-signin.component';
+import { UserCartComponent } from './user-cart/user-cart.component';
+import { PaypalComponent } from './paypal/paypal.component'
 
 export const  userRouter: Routes=[
   {
@@ -41,12 +43,21 @@ export const  userRouter: Routes=[
         component:PaymentComponent
       },
       {
+        path:'paypal',
+        component:PaypalComponent
+      },
+      
+      {
         path:'signup',
         component:UserSignupComponent
       },
       {
         path:'login',
         component:UserSigninComponent
+      },
+      {
+        path:'cart',
+        component:UserCartComponent
       },
       
       {
@@ -86,6 +97,6 @@ export const  userRouter: Routes=[
   ],
   exports:[
     UserHomeComponent, FooterComponent,  ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent],
-  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent]
+  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent, UserCartComponent, PaypalComponent]
 })
 export class UserModule { }
