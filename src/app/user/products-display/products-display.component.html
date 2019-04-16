@@ -4,23 +4,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 
-  
-
-
-          <a class="btn btn-primary"  (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">filter</a>
-        
-      <hr>
-      <div  id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header display" >
-        <div class="panel-body"></div>
-      </div>
-
-
-
   <div>
     <div *ngFor="let item of brandproducts">
       <div class="col-md-3">
-        <a routerLink="{{item.name}}" routerLinkActive="active">
+        
         <figure class="card card-product">
           <div class="img-wrap"><img src="http://localhost:3000/uploads/{{item.image}}"></div>
           <figcaption class="info-wrap">
@@ -32,13 +19,13 @@
               </div> 
           </figcaption>
           <div class="bottom-wrap">
-            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>	
             <div class="price-wrap h5">
-              <span class="price-new">{{item.price}}</span> <del class="price-old">$1980</del>
+              <span class="price-new">{{item.price}}$</span>
             </div>
+            <button class="btn btn-success btn-block" routerLink="/{{item.category}}/{{item.name}}" routerLinkActive="active" >Order Now</button>	
           </div> 
         </figure>
-        </a>
+        
       </div>
   </div>
 </div>

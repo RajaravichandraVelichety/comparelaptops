@@ -1,16 +1,17 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div >
   <header [mdcTopAppBar]="type" [fixedAdjust]="fixedAdjust">
     <div mdcTopAppBarRow>
       <section mdcTopAppBarSection alignStart>
       
-        <button  mdcTopAppBarNavIcon class="material-icons" (click)="sidenav.toggle()">menu</button>
+        <span   class="glyphicon glyphicon-menu-hamburger btn btn-lg" (click)="sidenav.toggle()"></span>
         <h1 mdcTopAppBarTitle routerLink="/admin" routerLinkActive="active">CompareLaptop</h1>
       </section>
       
       <section mdcTopAppBarSection alignEnd>
       
-        <button  mdcTopAppBarNavIcon class="material-icons" (click)="logout()"><i class="fas fa-power-off"></i></button>
+        <span  class="glyphicon glyphicon-off btn btn-lg" (click)="logout()"></span>
         
       </section>
 
@@ -34,11 +35,7 @@
                 <mat-divider></mat-divider> 
               </a>
               </mat-nav-list>
-              <mat-divider></mat-divider> 
-              <a mat-list-item routerLink="/admin/amazonadd" routerLinkActive="active" > Add amazon product
-
-                   <mat-divider></mat-divider> 
-              </a>
+            
               
             </mat-nav-list>
           </mat-sidenav>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/data.service'
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-user-cart',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCartComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private DataService: DataService,private router: Router,route:ActivatedRoute) { }
+  products=[];
   ngOnInit() {
+    this.getCartItems();
+  }
+  getCartItems():void{
+    
+    this.DataService.getCartItems().then(products=>this.products=products);
+    console.log(this.products);  
   }
 
+  deleteproduct(id){
+    var productid=id;
+    console.log(productid);
+    this.DataService.deletecartproduct(productid).then(response=>response=response);
+    window.location.reload();
+
+  }
 }

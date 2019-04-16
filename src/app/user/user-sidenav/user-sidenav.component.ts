@@ -11,7 +11,7 @@ import { DataService } from 'src/app/data.service';
 })
 export class UserSidenavComponent implements OnInit {
 
-    brands=[];
+    categories=[];
     searchitem:string;
 
   constructor(private DataService: DataService) { }
@@ -22,7 +22,7 @@ export class UserSidenavComponent implements OnInit {
 
   getCollections():void{
     
-    this.DataService.getCollections().then(brands=>this.brands= brands);
+    this.DataService.getCollections().then(categories=>this.categories= categories);
     
     
   }

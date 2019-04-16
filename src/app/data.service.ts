@@ -35,6 +35,15 @@ getProduct(productname:string,productbrand:string): Promise<any[]>{
                 .catch(this.handleError)
 }
 
+
+searchProduct(productname:string): Promise<any[]>{
+    
+
+  return this.http.get('http://localhost:3000/search/'+productname)
+              .toPromise()
+              .then(response=> response.json().data)
+              .catch(this.handleError)
+}
 getbrandProducts(item:string): Promise<any[]>{
     return this.http.get('http://localhost:3000/brandproducts/'+item)
                 .toPromise()
@@ -88,15 +97,23 @@ signup(user :FormData):Promise<any[]>{
          .catch(this.handleError)
 }
 
-addToCart(item :string):Promise<any[]>{
+addToCart(id :string,name:string,image:string,price:string):Promise<any[]>{
 
         
-  return this.http.post('http://localhost:3000/addToCart/',+item)
+  return this.http.get('http://localhost:3000/addToCart/'+id+'/'+name+'/'+image+'/'+price)
          .toPromise()
          .then(response => response)
          .catch(this.handleError)
 }
 
+getCartItems():Promise<any[]>{
+         
+  return this.http.get('http://localhost:3000/cartItems/')
+         .toPromise()
+         .then(response => response.json().data)
+         .catch(this.handleError)
+
+}
 
 
 deleteproduct(productid:string,brand:string):Promise<any[]>{
@@ -105,6 +122,14 @@ deleteproduct(productid:string,brand:string):Promise<any[]>{
                 .toPromise()
                 .then(response=> response.json().data)
                 .catch(this.handleError)
+}
+
+deletecartproduct(productid:string):Promise<any[]>{
+  
+  return this.http.get('http://localhost:3000/deletecartproduct/'+productid)
+             .toPromise()
+             .then(response=> response.json().data)
+             .catch(this.handleError)
 }
 
 private handleError (error: any) : Promise<any>{

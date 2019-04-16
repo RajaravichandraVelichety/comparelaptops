@@ -16,17 +16,17 @@ export class ProductsDisplayComponent implements OnInit {
   brandname: string;
   message:string;
   totalItems=20;
-  //brandnamer:string;
+
 
   constructor(private DataService: DataService,private router: Router,route:ActivatedRoute) { 
-        //this.DataService.currentMessage.subscribe(brandnamer => this.brandnamer = brandnamer);
+        
         
           route.params.subscribe(params =>{
 
 
                  this.brandname = params['brand'];
                  
-                // this.sendData(this.brandname);
+                
                 this.getbrandProducts(this.brandname);
                 
 
@@ -47,12 +47,9 @@ export class ProductsDisplayComponent implements OnInit {
    
     
    this.DataService.getbrandProducts(brander).then(brandproducts => this.brandproducts= brandproducts);
+   
   }
 
-  sendData(brandnamer){
-    
-    this.DataService.changeMessage(brandnamer);
-  }
   
 
 }

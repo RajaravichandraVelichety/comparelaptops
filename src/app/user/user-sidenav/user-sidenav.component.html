@@ -31,7 +31,7 @@
           <mat-sidenav #sidenav mode="side" [(opened)]="opened">
        
             <mat-nav-list>
-              <a mat-list-item routerLink="/{{brand.name}}" routerLinkActive="active" *ngFor="let brand of brands"   id="brandname" name="brandname"> {{ brand.name }}
+              <a mat-list-item routerLink="/{{category.name}}" routerLinkActive="active" *ngFor="let category of categories"   id="brandname" name="brandname"> {{ category.name }}
 
                    <mat-divider></mat-divider> 
               </a>

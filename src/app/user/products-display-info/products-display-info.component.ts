@@ -22,7 +22,7 @@ export class ProductsDisplayInfoComponent implements OnInit {
   
   products =[];  
   constructor(private DataService: DataService,private router: Router,route:ActivatedRoute) { 
-    this.DataService.currentMessage.subscribe(brandnamer => this.brandnamer = brandnamer);
+    //this.DataService.currentMessage.subscribe(brandnamer => this.brandnamer = brandnamer);
     
          route.params.subscribe(params =>{
 
@@ -59,9 +59,9 @@ export class ProductsDisplayInfoComponent implements OnInit {
    this.DataService.getProduct(productname,productbrand).then(product => this.product= product);
   }
 
-  addToCart(productid):void{
+  addToCart(productid,name,image,price):void{
     console.log(productid);
-    this.DataService.addToCart(productid).then(response=>{this.products.push(response);});  
+    this.DataService.addToCart(productid,name,image,price).then(response=>{this.products.push(response);});  
   }
 
 }

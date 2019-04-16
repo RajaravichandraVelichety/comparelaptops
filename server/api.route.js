@@ -58,6 +58,27 @@ MongoClient.connect(url, function(err, db) {
 });
 
 
+router.get('/search/:productname',(req,res)=>{
+  
+  var query={name:req.params.productname};
+  var collectionslist=[];
+  dbo.listCollections().toArray(function(err, collInfos) {
+    collectionslist.push(collInfos);
+    console.log(collectionslist);
+    
+    for(var element of collectionslist ) {
+    console.log(element[1].name);
+    dbo.collection(element[1].name).find(query).toArray(function(err, laptops) {
+    if (err) throw err;
+    response.data = laptops;
+    res.json(response);
+    
+      });
+  };
+});
+
+});
+
 router.get('/signin/:username/:password',(req,res)=>{
   
   var email={email:req.params.username};
@@ -84,21 +105,13 @@ router.get('/signin/:username/:password',(req,res)=>{
 
   router.get('/collections',(req,res)=>{
     
-  dbo.listCollections().toArray((function(err, brands) {
+  dbo.listCollections().toArray((function(err, categories) {
     if (err) throw err;
-    response.data = brands;
+    response.data = categories;
     res.json(response);
   }));
 });
 
-router.get('/categories',(req,res)=>{
-    
-  dbo.listCollections().toArray((function(err, brands) {
-    if (err) throw err;
-    response.data = brands;
-    res.json(response);
-  }));
-});
 
   router.post('/insert',upload.single('image'),(req,res)=>{
   
@@ -111,10 +124,11 @@ router.get('/categories',(req,res)=>{
                 image: req.file.filename,
                 description:req.body.description,
               };
+              
               console.log(req.body.category);
 
     
-  dbo.collection(myobj.brand).insertOne(myobj, function(err, res) {
+  dbo.collection(myobj.category).insertOne(myobj, function(err, res) {
     if (err) throw err;
     
     
@@ -141,55 +155,34 @@ router.get('/categories',(req,res)=>{
 
   });
 
-  router.post('/addToCart',upload.single('image'),(req,res)=>{
-  
-    var myobj = { 
-                  category:req.body.category,
-                  brand:req.body.brand,
-                  name:req.body.name,
-                  price:req.body.price,
-                  asin:req.body.asin,
-                  flip:req.body.flip,
-                  image: req.file.filename,
-                  description:req.body.description,
-                };
+  router.get('/addToCart/:productcode/:productname/:productimage/:productprice',(req,res)=>{
+  var item={productcode:req.params.productcode,
+            productname:req.params.productname,
+            productimage:req.params.productimage,
+            productprice:req.params.productprice,
+            };
+    
+    console.log(item);
   
       
-    dbo.collection(itemsInCart).insertOne(myobj, function(err, res) {
+    dbo.collection("itemsInCart").insertOne(item, function(err, res) {
       if (err) throw err;
-      
-      
+       
     });
-
   });
   
-router.get('/addproduct/:item',(req,res)=>{
-  
-  
-  var myobj = { 
-                brand:req.params.item.brand,
-                name:req.params.item.title,
-                price:req.params.item.price,
-                asin:req.params.item.asin,
-                os:req.params.item.os,
-                pageURL: req.params.item.pageURL,
-                features:req.params.item.features,
-              };
 
-    console.log(myobj.brand);
- dbo.collection(myobj.brand).insertOne(myobj, function(err, res) {
-   if (err) throw err;
-    
-    
+  router.get('/cartItems',(req,res)=>{
+
+    dbo.collection("itemsInCart").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      response.data = result;
+      console.log(response.data);
+      res.json(response);
+    });
   });
 
-  response.message="1 document inserted";
-  res.send(response.message);
-  });
-
-
-
-    router.get('/deleteproduct/:productid/:brand',(req,res)=>{
+  router.get('/deleteproduct/:productid/:brand',(req,res)=>{
 
     
     dbo.collection(req.params.brand).deleteOne({"name":req.params.productid}, function(err, obj) {
@@ -198,9 +191,22 @@ router.get('/addproduct/:item',(req,res)=>{
     response.message="1 document deleted";
     res.send(response);
         
-    });
-    });
+  });
+  });
 
+  
+  router.get('/deletecartproduct/:productid',(req,res)=>{
+
+    console.log(req.params.productid);
+    dbo.collection("itemsInCart").deleteOne({"productname":req.params.productid}, function(err, obj) {
+        if (err) throw err;
+        
+        console.log("one item deleted");
+        response.message="1 document deleted";
+         res.send(response);
+        
+  });
+  });
 
 });
 

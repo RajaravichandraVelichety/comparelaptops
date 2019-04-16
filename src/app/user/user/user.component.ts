@@ -18,20 +18,18 @@ export class UserComponent implements OnInit {
     brands=[];
     categories=[];
     searchitem:string;
+    search:string;
 
   ngOnInit() {
        this.getCollections();
   }
   getCollections():void{
     
-    this.DataService.getCollections().then(brands=>this.brands= brands);
+    this.DataService.getCollections().then(categories=>this.categories= categories);
     
     
   }
 
-  searchProducts(){
-    search=>this.searchitem;
-  }
 
   navigateToCart() {
     this.router.navigateByUrl('/cart');

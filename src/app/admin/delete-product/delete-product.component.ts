@@ -52,7 +52,7 @@ export class DeleteProductComponent implements OnInit {
     var brand =brand;
     console.log(productid,brand);
     this.DataService.deleteproduct(productid,brand).then(response=>response=response);
-    console.log(this.response.toString());
+    window.location.reload();
 
   }
 

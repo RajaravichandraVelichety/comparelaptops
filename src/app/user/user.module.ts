@@ -26,7 +26,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 import { UserCartComponent } from './user-cart/user-cart.component';
-import { PaypalComponent } from './paypal/paypal.component'
+import { PaypalComponent } from './paypal/paypal.component';
+import { ProductsearchComponent } from './productsearch/productsearch.component'
 
 export const  userRouter: Routes=[
   {
@@ -59,6 +60,18 @@ export const  userRouter: Routes=[
         path:'cart',
         component:UserCartComponent
       },
+      
+      {
+        path:'search',
+  
+        children:[
+          {
+          path:':productname',
+          component:ProductsearchComponent
+          
+        }
+        ]
+    },
       
       {
           path:':brand',
@@ -97,6 +110,6 @@ export const  userRouter: Routes=[
   ],
   exports:[
     UserHomeComponent, FooterComponent,  ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent],
-  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent, UserCartComponent, PaypalComponent]
+  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent, UserCartComponent, PaypalComponent, ProductsearchComponent]
 })
 export class UserModule { }
