@@ -132,6 +132,9 @@ deletecartproduct(productid:string):Promise<any[]>{
              .catch(this.handleError)
 }
 
+
+ 
+
 private handleError (error: any) : Promise<any>{
         console.error('An error occured',error);
         return Promise.reject(error.message||error);

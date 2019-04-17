@@ -3,6 +3,8 @@ var express = require('express');
  var router = express.Router();
 var url = "mongodb://localhost:27017/";
 var multer=require('multer');
+var crypto = require('crypto');
+
 
  
 var upload = multer({ dest: 'dist/uploads/'});
@@ -17,7 +19,7 @@ let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibm
 
   router.post('/authenticate',(req,res)=>{
 
-    if("gpk@comparelaptop.in"==req.body.email&&"iloveu"==req.body.password){
+    if("rryecomm@gmail.com"==req.body.email&&"rry12345"==req.body.password){
       response.data=token;
       res.json(response);
     }

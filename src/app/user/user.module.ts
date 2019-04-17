@@ -27,7 +27,9 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 import { UserCartComponent } from './user-cart/user-cart.component';
 import { PaypalComponent } from './paypal/paypal.component';
-import { ProductsearchComponent } from './productsearch/productsearch.component'
+import { ProductsearchComponent } from './productsearch/productsearch.component';
+import { LoginComponent } from './login/login.component'
+import { AuthGuardGuard } from "./auth-gaurd.guard";
 
 export const  userRouter: Routes=[
   {
@@ -41,11 +43,14 @@ export const  userRouter: Routes=[
       },
       {
         path:'payment',
-        component:PaymentComponent
+        component:PaymentComponent,
+        canActivate: [AuthGuardGuard]
+        
       },
       {
         path:'paypal',
-        component:PaypalComponent
+        component:PaypalComponent,
+        //canActivate: [AuthGuardGuard]
       },
       
       {
@@ -54,11 +59,12 @@ export const  userRouter: Routes=[
       },
       {
         path:'login',
-        component:UserSigninComponent
+        component:LoginComponent
       },
       {
         path:'cart',
-        component:UserCartComponent
+        component:UserCartComponent,
+        //canActivate: [AuthGuardGuard]
       },
       
       {
@@ -110,6 +116,6 @@ export const  userRouter: Routes=[
   ],
   exports:[
     UserHomeComponent, FooterComponent,  ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent],
-  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent, UserCartComponent, PaypalComponent, ProductsearchComponent]
+  declarations: [UserHomeComponent, FooterComponent, ProductsDisplayComponent, ProductsDisplayInfoComponent, UserSidenavComponent, UserComponent, SimilarProductsComponent, PaymentComponent, UserSignupComponent, UserSigninComponent, UserCartComponent, PaypalComponent, ProductsearchComponent, LoginComponent]
 })
 export class UserModule { }

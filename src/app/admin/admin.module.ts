@@ -37,24 +37,28 @@ export const adminRouter: Routes=[
     children:[
       {
         path:'',
-        component: AdminComponent
+        component: AdminComponent,
+        canActivate: [AuthGuardGuard] 
         
         
       },
       {
         path:'addproduct',
-        component:AddProductComponent
+        component:AddProductComponent,
+        canActivate: [AuthGuardGuard]
         
       },
       {
         path:'deleteproduct/:brand',
-        component:DeleteProductComponent
+        component:DeleteProductComponent,
+        canActivate: [AuthGuardGuard]
         
 
       },
       {
         path:'flipkartadd',
-        component:AddProductFlipkartComponent
+        component:AddProductFlipkartComponent,
+        canActivate: [AuthGuardGuard]
         
 
       },
